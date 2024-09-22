@@ -76,7 +76,7 @@ const Page = () => {
               src={Bg}
               alt="bg 1"
               fill
-              blur
+              placeholder="blur"
               className="absolute inset-0 object-cover"
             />
           </div>
