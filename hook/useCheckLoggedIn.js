@@ -8,7 +8,7 @@ const useCheckLoggedIn = () => {
     secureAxiosInstance
       .get('/securePing')
       .then((res) => {
-        console.log('sp', res);
+        // console.log('sp', res);
         if (res.data.status === 'failed') {
           router.push('/login');
         }

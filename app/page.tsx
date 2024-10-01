@@ -1,8 +1,8 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import bg from "./public/download.png";
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import bg from './public/download.png';
+import Image from 'next/image';
 import {
   Select,
   SelectContent,
@@ -11,11 +11,11 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 
 const Page = () => {
-  const [selectedAssessment, setSelectedAssessment] = useState("");
+  const [selectedAssessment, setSelectedAssessment] = useState('');
   const handleSelectChange = (value: any) => {
     setSelectedAssessment(value);
   };
@@ -36,7 +36,7 @@ const Page = () => {
             Welcome to MediLink
           </h1>
           <p className="text-lg md:text-2xl mb-8 font-bold italic text-red-100">
-            Bridging Care and Convenience{" "}
+            Bridging Care and Convenience{' '}
           </p>
           <div className="mt-4 flex justify-center gap-4 items-center ">
             <Select onValueChange={handleSelectChange}>
@@ -55,11 +55,16 @@ const Page = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            <Link href={`risk-assement/${selectedAssessment}`}>
-              <Button className="bg-[#F81E46] py-6 px-8 hover:bg-[#F81E46]/90">
+            <Button
+              disabled={selectedAssessment === ''}
+              className={`bg-[#F81E46] py-6 px-8 hover:bg-[#F81E46]/90 ${
+                selectedAssessment === '' ? 'cursor-not-allowed bg-[#F81E46]/80' : ''
+              }`}
+            >
+              <Link href={`risk-assement/${selectedAssessment}`}>
                 Start Assesment
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
