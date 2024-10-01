@@ -13,9 +13,7 @@ function Logo() {
         className="rounded-full"
         quality={100}
       />
-      <span className="text-xl font-semibold text-primary ">
-        The Telemedicine App
-      </span>
+      <span className="text-xl font-semibold text-primary ">MediLink</span>
     </Link>
   );
 }

@@ -1,25 +1,21 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, Lock, Mail } from "lucide-react";
-import Image from "next/image";
-import { Input } from "@/components/ui/input";
-import { axiosInstance } from "../../services/axios";
-import { PulseLoader } from "react-spinners";
-import Toast from "@/lib/Toast";
-import { useRouter } from "next/navigation";
-import Pic1 from "../../app/public/pic1.png";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft, Lock, Mail } from 'lucide-react';
+import Image from 'next/image';
+import { Input } from '@/components/ui/input';
+import { axiosInstance } from '../../services/axios';
+import { PulseLoader } from 'react-spinners';
+import Toast from '@/lib/Toast';
+import { useRouter } from 'next/navigation';
+import Pic1 from '../../app/public/pic1.png';
+import { rolesRoute } from '@/constants/index';
 
 const Page = () => {
-  const rolesRoute = {
-    user: "/dashboard",
-    lister: "lister/dashboard",
-    admin: "admin/dashboard",
-  };
   const initialInput = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
   const [input, setInput] = useState(initialInput);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,26 +32,25 @@ const Page = () => {
   const handleSubmit = async () => {
     const payload = {
       ...input,
+      role: 'user',
     };
-    console.log(payload);
-    return;
 
     try {
       setIsLoading(true);
 
-      if (!input.email || !input.password) throw new Error("All Field are required");
+      if (!input.email || !input.password) throw new Error('All Field are required');
 
-      const response = await axiosInstance.post("/auth/login", payload);
+      const response = await axiosInstance.post('/auth/login', payload);
       Toast.fire({
-        icon: "success",
+        icon: 'success',
         title: response?.data?.message,
-        background: "#008000",
+        background: '#008000',
       });
 
       // console.log("User signed up successfully:", response.data);
       const { token, user } = response.data.payload;
-      localStorage.setItem("renriteToken", token);
-      localStorage.setItem("renriteUser", JSON.stringify(user));
+      localStorage.setItem('medilinkToken', token);
+      localStorage.setItem('medilinkUser', JSON.stringify(user));
 
       // return;
       let path = await response?.data?.payload?.user?.role;
@@ -66,11 +61,11 @@ const Page = () => {
       // localStorage.setItem("token", response.data.token);
     } catch (error) {
       Toast.fire({
-        icon: "error",
+        icon: 'error',
         title: error?.response?.data?.message || error?.message,
-        background: "#D84646",
+        background: '#D84646',
       });
-      console.error("Error signing up:", error?.response?.data);
+      console.error('Error signing up:', error?.response?.data);
     } finally {
       setIsLoading(false);
     }
@@ -154,7 +149,7 @@ const Page = () => {
                       data-testid="loader"
                     />
                   ) : (
-                    "Login"
+                    'Login'
                   )}
                 </Button>
               </div>
@@ -162,13 +157,13 @@ const Page = () => {
               {/* form footer text */}
               <div className="text-center my-4">
                 <p className="text-sm">
-                  Don&apos;t have an account ?{" "}
+                  Don&apos;t have an account ?{' '}
                   <Link
                     href="/register"
                     className="inline-block text-main  hover:underline"
                   >
                     Register
-                  </Link>{" "}
+                  </Link>{' '}
                 </p>
               </div>
             </div>

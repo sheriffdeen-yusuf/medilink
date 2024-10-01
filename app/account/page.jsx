@@ -1,13 +1,20 @@
-import React from "react";
+'use client';
+import React from 'react';
+import useShowAuthBtn from '@/hook/useShowAuthBtn';
 
-export const metadata = {
-  title: "Account Area",
-};
+const Page = () => {
+  const userData = useShowAuthBtn();
 
-const page = () => {
   return (
-    <h2 className="font-semibold text-2xl text-accent-400 mb-7">Welcome, Lekenz</h2>
+    <div className="">
+      <h1>
+        Welcome back,{' '}
+        <span className=" capitalize text-main font-semibold">
+          {userData?.firstName + ' ' + userData?.lastName}{' '}
+        </span>
+      </h1>
+    </div>
   );
 };
 
-export default page;
+export default Page;

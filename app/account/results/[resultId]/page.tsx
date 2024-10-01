@@ -12,7 +12,7 @@ import React from "react";
 
 const page = ({ params }) => {
   const { LOW, HIGH, MEDIUM } = riskStatus;
-  const styles = getStyles(MEDIUM);
+  const styles = getStyles(LOW);
 
   const divStyles = {
     wrapper: {

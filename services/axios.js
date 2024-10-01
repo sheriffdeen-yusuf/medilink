@@ -1,25 +1,32 @@
 // axiosConfig.js
-import axios from "axios";
+import axios from 'axios';
 
-// Normal Axios instance (for non-authenticated requests)
+const baseURL =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://localhost:8000/api/v1'
+    : 'https://rentrite-server.onrender.com';
+
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000/api/v1",
+  baseURL,
 });
 
 // Secure Axios instance (for authenticated requests)
 const secureAxiosInstance = axios.create({
-  baseURL: "http://localhost:8000/api/v1",
+  baseURL,
+
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
-// Interceptor to add Authorization header to secure requests
 secureAxiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("renriteToken"); // Or wherever you store your token
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('medilinkToken');
+      // console.log("token", token);
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   },

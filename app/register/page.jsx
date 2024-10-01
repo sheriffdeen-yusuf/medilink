@@ -1,22 +1,22 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Toast from "@/lib/Toast";
-import { ChevronLeft, Lock, Mail, User } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import Bg from "../../app/public/bg.png";
-import { axiosInstance } from "../../services/axios";
-import { PulseLoader } from "react-spinners";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import Toast from '@/lib/Toast';
+import { ChevronLeft, Lock, Mail, User } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import Bg from '../../app/public/bg.png';
+import { axiosInstance } from '../../services/axios';
+import { PulseLoader } from 'react-spinners';
 
 const Page = () => {
   const initialInput = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
   };
   const [input, setInput] = useState(initialInput);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,29 +35,29 @@ const Page = () => {
 
     const payload = {
       ...input,
+      role: 'user',
     };
-    console.log("input", payload);
+    console.log('input', payload);
 
-    return;
     setIsLoading(true);
     axiosInstance
       .post(`/auth/signup/`, payload)
       .then((response) => {
         Toast.fire({
-          icon: "success",
+          icon: 'success',
           title: response?.data?.message,
-          background: "#008000",
+          background: '#008000',
         });
         // console.log("User signed up successfully:", response.data);
-        router.push("/login");
+        router.push('/login');
       })
       .catch((error) => {
         Toast.fire({
-          icon: "error",
+          icon: 'error',
           title: error?.response?.data?.message || error?.message,
-          background: "#D84646",
+          background: '#D84646',
         });
-        console.error("Error signing up:", error);
+        console.error('Error signing up:', error);
       })
       .finally(() => setIsLoading(false));
   };
@@ -173,7 +173,7 @@ const Page = () => {
                         data-testid="loader"
                       />
                     ) : (
-                      "Register"
+                      'Register'
                     )}
                   </Button>
                 </div>
@@ -182,13 +182,13 @@ const Page = () => {
               {/* form footer text */}
               <div className="text-center my-4">
                 <p className="text-sm">
-                  Already have an account ?{" "}
+                  Already have an account ?{' '}
                   <Link
                     href="/login"
                     className="inline-block text-main  hover:underline"
                   >
                     Login
-                  </Link>{" "}
+                  </Link>{' '}
                 </p>
               </div>
             </div>
