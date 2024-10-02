@@ -184,7 +184,6 @@ const Page = () => {
                   <PulseLoader
                     color="#fff"
                     loading={isLoading}
-                    height={6}
                     size={6}
                     aria-label="Loading Spinner"
                     data-testid="loader"

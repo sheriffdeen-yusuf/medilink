@@ -1,39 +1,63 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-import RadioFormField from "@/components/RadioFormField";
-import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import Link from "next/link";
+import RadioFormField from '@/components/RadioFormField';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import Link from 'next/link';
+import { PulseLoader } from 'react-spinners';
+import { secureAxiosInstance } from '@/services/axios';
+import Toast from '@/lib/Toast';
+import { useState } from 'react';
 
 const formSchema = z.object({
-  age: z.enum(["yes", "no"]),
-  weight: z.string().min(2).max(3),
-  feet: z.string().min(2),
-  inches: z.string().min(2),
-  gender: z.enum(["male", "female"]),
-  parent: z.enum(["yes", "no"]),
-  sedentary: z.enum(["yes", "no"]),
-  background: z.enum(["yes", "no"]),
-  imapired: z.enum(["yes", "no"]),
-  bp: z.enum(["yes", "no"]),
-  hdl: z.enum(["yes", "no"]),
+  age: z.enum(['yes', 'no']),
+  family_history: z.enum(['yes', 'no']),
+  obesity: z.enum(['yes', 'no']),
+  freq_smoking: z.enum(['yes', 'no']),
+  test_cholesterol: z.enum(['yes', 'no']),
+  high_blood_pressure: z.enum(['yes', 'no']),
+  freq_excercise: z.enum(['yes', 'no']),
+  rapid_heartbeat: z.enum(['yes', 'no']),
+  fatty_meal: z.enum(['yes', 'no']),
+  test_diabetes: z.enum(['yes', 'no']),
 });
 
 const Page = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      // weight: "0",
-      // age: true,
-    },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    const payload = {
+      ...values,
+    };
+
+    setIsLoading(true);
+    secureAxiosInstance
+      .post(`/stratification/cardiovascular`, payload)
+      .then((response) => {
+        Toast.fire({
+          icon: 'success',
+          title: response?.data?.message,
+          background: '#008000',
+        });
+        console.log(response);
+        form.reset();
+      })
+      .catch((error) => {
+        Toast.fire({
+          icon: 'error',
+          title: error?.response?.data?.message || error?.message,
+          background: '#D84646',
+        });
+        console.error('Error while submitting:', error);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -44,7 +68,7 @@ const Page = () => {
         </h1>
         <p className="text-[#A2A3A6] font-light text-lg py-2 pb-10">
           This questionnaire is to assess your Cardiovascular Disease risk level and
-          recommends appropriate actions.{" "}
+          recommends appropriate actions.{' '}
         </p>
 
         <Form {...form}>
@@ -57,97 +81,97 @@ const Page = () => {
 "
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
             <RadioFormField
-              name="preg"
+              name="family_history"
               label="2. Do you have a family history of heart disease, stroke, or other cardiovascular conditions? (Family history plays a large role in determining your risk.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
             {/* weight */}
             <RadioFormField
-              name="famHistory"
-              label="3. What is your current weight (in kg)? (Obesity is a major risk factor for cardiovascular disease.)"
+              name="obesity"
+              label="3. Is your current weight >= 70 (in kg)? (Obesity is a major risk factor for cardiovascular disease.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
             <RadioFormField
-              name="famHistory"
+              name="freq_smoking"
               label="4. Do you currently smoke, or have you smoked regularly in the past? (Smoking significantly increases the risk of heart disease.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
             <RadioFormField
-              name="smoke"
+              name="test_cholesterol"
               label="5. Have you been diagnosed with high cholesterol by a healthcare professional? (High cholesterol contributes to the development of heart disease.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
             <RadioFormField
-              name="alcohol"
+              name="high_blood_pressure"
               label="6. Have you been diagnosed with high blood pressure (over 140/90 mmHg)? (Hypertension is a leading risk factor for cardiovascular diseases such as heart attack and stroke.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
             <RadioFormField
-              name="background"
+              name="freq_excercise"
               label="7. How many times per week do you engage in physical exercise, including walking, jogging, or other forms of physical activity? (Regular exercise reduces the risk of cardiovascular disease.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
             <RadioFormField
-              name="imapired"
+              name="rapid_heartbeat"
               label="8. Have you recently experienced chest pain, shortness of breath, or rapid heartbeats? (These symptoms could indicate a heart condition or other cardiovascular issues.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
             <RadioFormField
-              name="bp"
+              name="fatty_meal"
               label="9. Do you consume a diet high in unhealthy fats, processed foods, and low in fruits and vegetables? (Diet is an important modifiable risk factor for heart disease.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
             <RadioFormField
-              name="hdl"
+              name="test_diabetes"
               label="10. Have you been diagnosed with diabetes or prediabetes? (Diabetes increases the risk of heart disease and stroke.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -157,7 +181,17 @@ const Page = () => {
                 <Button variant="outline">Back</Button>
               </Link>
               <Button type="submit" size="lg" className="bg-[#2A3390]">
-                Submit and Get Instant Results
+                {isLoading ? (
+                  <PulseLoader
+                    color="#fff"
+                    loading={isLoading}
+                    size={6}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                ) : (
+                  'Submit and Get Instant Results'
+                )}
               </Button>
             </div>
           </form>

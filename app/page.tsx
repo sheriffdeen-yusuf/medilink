@@ -49,8 +49,8 @@ const Page = () => {
                   <SelectItem value="breast-cancer">Breast Cancer</SelectItem>
                   <SelectItem value="cardiovascular">Cardiovascular</SelectItem>
                   <SelectItem value="diabetes">Diabetes</SelectItem>
-                  <SelectItem value="hypertension">Hypertension</SelectItem>
-                  <SelectItem value="malaria">Malaria</SelectItem>
+                  {/* <SelectItem value="hypertension">Hypertension</SelectItem> */}
+                  {/* <SelectItem value="malaria">Malaria</SelectItem> */}
                   <SelectItem value="pregnancy">Pregnancy</SelectItem>
                 </SelectGroup>
               </SelectContent>
