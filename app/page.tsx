@@ -1,5 +1,8 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import React, { useState } from 'react';
+
 import Link from 'next/link';
 import bg from './public/download.png';
 import Image from 'next/image';

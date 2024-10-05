@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import dynamic from 'next/dynamic';
+
 import { Button } from '@/components/ui/button';
 import { getStyles } from '@/lib/utils';
 import { ExclamationCircleIcon, MapPinIcon } from '@heroicons/react/24/solid';
@@ -8,11 +10,28 @@ import {
   TriangleUpIcon,
 } from '@radix-ui/react-icons';
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+// Dynamically import Leaflet and disable SSR
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  {
+    ssr: false, // Disable server-side rendering for this module
+  }
+);
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), {
+  ssr: false,
+});
+const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
+  ssr: false,
+});
 import { useGeolocation } from '@/hook/useGeoLocation';
 import 'leaflet/dist/leaflet.css';
 
-const page = (props: any) => {
+const Page = (props: any) => {
   const { setShowDetail, assessmentDetails } = props;
   const styles = getStyles(assessmentDetails.result);
   const {
@@ -58,13 +77,17 @@ const page = (props: any) => {
   };
 
   const handleClick = async () => {
-    await getPosition(); // Get user's location
+    if (typeof window !== 'undefined') {
+      // Ensures this runs on the client only
+      getPosition();
+    }
     setMapVisible(true); // Show the map
     fetchNearbyHospitals(lat, lng); // Fetch nearby hospitals
   };
 
   // Fetch nearby hospitals using OpenStreetMap Overpass API
   const fetchNearbyHospitals = async (latitude: number, longitude: number) => {
+    if (!latitude || !longitude) return;
     const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node["amenity"="hospital"](around:70000,${latitude},${longitude});out;`;
     // const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node[amenity="hospital"];out;`;
 
@@ -183,4 +206,4 @@ const page = (props: any) => {
   );
 };
 
-export default page;
+export default Page;

@@ -1,6 +1,6 @@
 'use client';
-import Link from 'next/link';
-import { rolesRoute } from '@/constants/index';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable react-hooks/exhaustive-deps */ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
