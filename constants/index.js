@@ -11,3 +11,30 @@ export const assessementTypes = [
   'diabetesResult',
   'pregnancyResult',
 ];
+
+export const tipsArray = [
+  {
+    tipType: 'Pregnancy risk',
+    tipContent: 'bh knkjnljnknknlkn ',
+  },
+  {
+    tipType: 'Diabetes disease',
+    tipContent: 'bh knkjnljnknknlkn ',
+  },
+  {
+    tipType: 'Cardiovascular disease',
+    tipContent: 'bh knkjnljnknknlkn ',
+  },
+  {
+    tipType: 'Breast Cancer',
+    tipContent: 'bh knkjnljnknknlkn ',
+  },
+  {
+    tipType: 'Cardiovascular disease',
+    tipContent: 'bh knkjnljnknknlkn ',
+  },
+  {
+    tipType: 'Cardiovascular disease',
+    tipContent: 'bh knkjnljnknknlkn ',
+  },
+];
