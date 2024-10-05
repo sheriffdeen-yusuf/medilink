@@ -1,39 +1,39 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // "use client";
-import { Button } from "@/components/ui/button";
-import { riskStatus } from "@/lib/types";
-import { getStyles } from "@/lib/utils";
-import { ExclamationCircleIcon, MapPinIcon } from "@heroicons/react/24/solid";
+import { Button } from '@/components/ui/button';
+import { getStyles } from '@/lib/utils';
+import { ExclamationCircleIcon, MapPinIcon } from '@heroicons/react/24/solid';
 import {
   ArrowDownIcon,
   ExclamationTriangleIcon,
   TriangleUpIcon,
-} from "@radix-ui/react-icons";
-import React from "react";
+} from '@radix-ui/react-icons';
+import React from 'react';
 
-const page = ({ params }) => {
-  const { LOW, HIGH, MEDIUM } = riskStatus;
-  const styles = getStyles(LOW);
+const page = (props: any) => {
+  const { setShowDetail, assessmentDetails } = props;
+  const styles = getStyles(assessmentDetails.result);
 
   const divStyles = {
     wrapper: {
-      display: "flex",
-      flexDirection: "column",
-      gap: "1rem",
-      justifyContent: "space-around",
-      alignItems: "center",
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1rem',
+      justifyContent: 'space-around',
+      alignItems: 'center',
       backgroundColor: styles.bgc,
-      borderRadius: "1rem",
-      height: "16rem",
+      borderRadius: '1rem',
+      height: '16rem',
     },
     riskPosition: {
-      display: "flex",
+      display: 'flex',
       justifyContent: styles.pos,
-      alignItems: "center",
+      alignItems: 'center',
     },
   };
 
   const Icon = () => {
-    if (styles.status === "low") {
+    if (styles.status === 'low') {
       return (
         <ExclamationCircleIcon className="h-20 w-20" color={styles.iconColor} />
       );
@@ -45,7 +45,16 @@ const page = ({ params }) => {
 
   return (
     <div>
-      <h1 className="font-semibold text-2xl mb-2 ">Your Results</h1>
+      <div className="flex justify-between mb-8">
+        <Button onClick={() => setShowDetail(false)} variant="outline">
+          {' '}
+          &larr; Back
+        </Button>
+
+        <h1 className="font-light font-stone-700 text-xl mb-2 ">
+          Your Result for: <b>{assessmentDetails.assesment_type}</b>
+        </h1>
+      </div>
       <div className="px-28" style={divStyles.wrapper}>
         <div className="flex justify-center items-center gap-5">
           <Icon />
@@ -78,8 +87,8 @@ const page = ({ params }) => {
           Choose your area to see facilities near you
         </p>
         <Button size="lg" variant="outline">
-          {" "}
-          Choose Area <ArrowDownIcon className="h-6 mx-2" />{" "}
+          {' '}
+          Choose Area <ArrowDownIcon className="h-6 mx-2" />{' '}
         </Button>
       </div>
     </div>

@@ -1,21 +1,58 @@
-import Link from "next/link";
-import React from "react";
+'use client';
+import { getTakenAssessmentByUser } from '@/lib/utils';
+import { secureAxiosInstance } from '@/services/axios';
+import { useEffect, useState } from 'react';
+import { PulseLoader } from 'react-spinners';
+import AssessementWrapper from './AssessementWrapper';
 
-const page = () => {
+const Page = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [allAssessment, setAllAssessment] = useState([]);
+
+  useEffect(() => {
+    const fetchProperties = () => {
+      setIsLoading(true);
+      secureAxiosInstance
+        .get(`/users/me`)
+        .then((response) => {
+          const data = getTakenAssessmentByUser(response?.data?.payload?.user);
+          // console.log(response?.data?.payload);
+          setAllAssessment(data.reverse());
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          Toast.fire({
+            icon: 'error',
+            title: error?.response?.data?.message || error?.message,
+            background: '#D84646',
+          });
+          console.error(error);
+        })
+        .finally(() => setIsLoading(false));
+    };
+    fetchProperties();
+  }, []);
   return (
     <div>
-      <h1>All Rsult page</h1>
-      <div className="space-y-1 w-1/4">
-        {[
-          ...Array.from({ length: 8 }, (_, key) => (
-            <Link key={key} href={`/account/results/${key}`}>
-              <div className="h-10 hover:bg-lime-200 ">result {key + 1}</div>
-            </Link>
-          )),
-        ]}
-      </div>
+      <h1 className="text-2xl text-stone-700 font-semibold mb-12">
+        All Assesment Taken page
+      </h1>
+      {isLoading ? (
+        <PulseLoader
+          color="#567dbb"
+          loading={isLoading}
+          height={15}
+          size={30}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      ) : allAssessment?.length === 0 ? (
+        <h1>You have not taken any assessment yet! </h1>
+      ) : (
+        <AssessementWrapper allAssessment={allAssessment} />
+      )}
     </div>
   );
 };
 
-export default page;
+export default Page;
