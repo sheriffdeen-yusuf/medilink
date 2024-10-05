@@ -29,7 +29,7 @@ const TipCard = ({ tip }) => {
         }}
         className="p-4"
       >
-        <p className="text-gray-600 text-base">
+        <p className="text-gray-700 text-base">
           <strong>Tips: </strong>
           {tip.tipContent}
         </p>
