@@ -1,6 +1,6 @@
-import Link from "next/link";
-import logo from "../app/public/mdLogo.png";
-import Image from "next/image";
+import Link from 'next/link';
+import logo from '../app/public/mdLogo.png';
+import Image from 'next/image';
 
 function Logo() {
   return (
@@ -13,7 +13,9 @@ function Logo() {
         className="rounded-full"
         quality={100}
       />
-      <span className="text-xl font-semibold text-primary ">MediLink</span>
+      <span className="hidden md:block text-xl font-semibold text-primary ">
+        MediLink
+      </span>
     </Link>
   );
 }

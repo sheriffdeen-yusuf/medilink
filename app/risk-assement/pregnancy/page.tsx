@@ -182,7 +182,7 @@ const Page = () => {
               <Link href="/">
                 <Button variant="outline">Back</Button>
               </Link>
-              <Button type="submit" size="lg" className="bg-[#2A3390]">
+              <Button type="submit" className="bg-[#2A3390]  md:px-6 px-1">
                 {isLoading ? (
                   <PulseLoader
                     color="#fff"

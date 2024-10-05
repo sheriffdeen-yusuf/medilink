@@ -19,28 +19,37 @@ export default function Navigation() {
 
   return (
     <nav className="z-10 text-xl">
-      <ul className="flex gap-16 items-center text-primary font-semibold">
+      <ul className="flex gap-2 md:gap-16 items-center text-primary font-semibold">
         <li>
-          <Link href="/health-tips" className="hover:text-sky-800 transition-colors">
+          <Link
+            href="/health-tips"
+            className=" text-sm md:text-xl hover:text-sky-800 transition-colors"
+          >
             Public Area
           </Link>
         </li>
         <li>
-          <Link href="/about" className="hover:text-sky-800 transition-colors">
+          <Link
+            href="/about"
+            className="text-sm md:text-xl hover:text-sky-800 transition-colors"
+          >
             About
           </Link>
         </li>
         <li>
           {data === undefined ? (
-            <Link href="/account" className="hover:text-sky-800 transition-colors">
+            <Link
+              href="/account"
+              className="text-sm md:text-xl hover:text-sky-800 transition-colors"
+            >
               Account
             </Link>
           ) : (
             <Link
               href="/account"
-              className="hover:text-sky-800 transition-colors flex items-center gap-4"
+              className="text-sm md:text-xl hover:text-sky-800 transition-colors flex items-center gap-4"
             >
-              <div className="bg-slate-200  text-sky-700 rounded-full p-2 uppercase ">
+              <div className="bg-slate-200  text-sm md:text-xl text-sky-700 rounded-full p-2 uppercase ">
                 <h1 className="font-semibold">{data.firstName.slice(0, 2)}</h1>
               </div>
               <span>Account</span>

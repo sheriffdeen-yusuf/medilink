@@ -38,9 +38,9 @@ const Page = () => {
           <p className="text-lg md:text-2xl mb-8 font-bold italic text-red-100">
             Bridging Care and Convenience{' '}
           </p>
-          <div className="mt-4 flex justify-center gap-4 items-center ">
+          <div className="mt-4 flex justify-center gap-4 items-center max-w-xs md:max-w-4xl ">
             <Select onValueChange={handleSelectChange}>
-              <SelectTrigger className="w-[280px] py-6 px-6 bg-slate-50">
+              <SelectTrigger className="w-[280px] md:p-6 p-3 bg-slate-50">
                 <SelectValue placeholder="Select a assesment" />
               </SelectTrigger>
               <SelectContent>
@@ -57,7 +57,7 @@ const Page = () => {
             </Select>
             <Button
               disabled={selectedAssessment === ''}
-              className={`bg-[#F81E46] py-6 px-8 hover:bg-[#F81E46]/90 ${
+              className={`bg-[#F81E46] md:p-6 p-3 hover:bg-[#F81E46]/90 ${
                 selectedAssessment === '' ? 'cursor-not-allowed bg-[#F81E46]/80' : ''
               }`}
             >

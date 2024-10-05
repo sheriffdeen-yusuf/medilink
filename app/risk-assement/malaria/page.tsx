@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-import RadioFormField from "@/components/RadioFormField";
-import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
-import Link from "next/link";
+import RadioFormField from '@/components/RadioFormField';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import Link from 'next/link';
 
 const formSchema = z.object({
-  age: z.enum(["yes", "no"]),
+  age: z.enum(['yes', 'no']),
   weight: z.string().min(2).max(3),
   feet: z.string().min(2),
   inches: z.string().min(2),
-  gender: z.enum(["male", "female"]),
-  parent: z.enum(["yes", "no"]),
-  sedentary: z.enum(["yes", "no"]),
-  background: z.enum(["yes", "no"]),
-  imapired: z.enum(["yes", "no"]),
-  bp: z.enum(["yes", "no"]),
-  hdl: z.enum(["yes", "no"]),
+  gender: z.enum(['male', 'female']),
+  parent: z.enum(['yes', 'no']),
+  sedentary: z.enum(['yes', 'no']),
+  background: z.enum(['yes', 'no']),
+  imapired: z.enum(['yes', 'no']),
+  bp: z.enum(['yes', 'no']),
+  hdl: z.enum(['yes', 'no']),
 });
 
 const Page = () => {
@@ -44,7 +44,7 @@ const Page = () => {
         </h1>
         <p className="text-[#A2A3A6] font-light text-lg py-2 pb-10">
           This questionnaire is to assess your malaria risk level and recommends
-          appropriate actions.{" "}
+          appropriate actions.{' '}
         </p>
 
         <Form {...form}>
@@ -56,8 +56,8 @@ const Page = () => {
               label="1. Have you recently traveled to or live in a malaria-endemic area (This determines your exposure to malaria risk areas.)?"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -66,8 +66,8 @@ const Page = () => {
               label="2. Do you frequently experience symptoms such as fever, chills, or excessive sweating, particularly in the evenings or at night? (These are common symptoms of malaria.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -77,8 +77,8 @@ const Page = () => {
               label="3. Have you been diagnosed with malaria in the past, and how often do you experience relapses? (Past malaria infections increase the risk of recurring malaria.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -87,8 +87,8 @@ const Page = () => {
               label="4. Do you consistently use a mosquito net or other forms of protection (e.g., insect repellent) while sleeping? (Using a net is an effective prevention method against mosquito bites.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -97,8 +97,8 @@ const Page = () => {
               label="5. Have you experienced high blood pressure during this or any previous pregnancy? (High blood pressure during pregnancy can indicate a risk of preeclampsia, a serious pregnancy complication.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -107,8 +107,8 @@ const Page = () => {
               label="6. Are you currently taking malaria prophylaxis (preventive medication) if you live in or travel to high-risk areas? (Preventive measures reduce the risk of contracting malaria.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
             <RadioFormField
@@ -116,8 +116,8 @@ const Page = () => {
               label="7. Have you experienced recent headaches, muscle pain, or nausea? (These are symptoms commonly associated with malaria.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -126,8 +126,8 @@ const Page = () => {
               label="8. Do you notice any loss of appetite, unexplained fatigue, or general malaise in your day-to-day life? (These are less obvious but still common signs of malaria.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -136,8 +136,8 @@ const Page = () => {
               label="9. Do you live or spend a significant amount of time near stagnant water sources, which are breeding grounds for mosquitoes? (Proximity to mosquito habitats increases malaria risk.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
             <RadioFormField
@@ -145,8 +145,8 @@ const Page = () => {
               label="10. Do you have easy access to healthcare or malaria treatment in case of symptoms? (Access to medical care is crucial for early diagnosis and treatment of malaria.)"
               control={form.control}
               options={[
-                { value: "yes", label: "Yes" },
-                { value: "no", label: "No" },
+                { value: 'yes', label: 'Yes' },
+                { value: 'no', label: 'No' },
               ]}
             />
 
@@ -155,7 +155,7 @@ const Page = () => {
               <Link href="/">
                 <Button variant="outline">Back</Button>
               </Link>
-              <Button type="submit" size="lg" className="bg-[#2A3390]">
+              <Button type="submit" className="bg-[#2A3390]  md:px-6 px-1">
                 Submit and Get Instant Results
               </Button>
             </div>

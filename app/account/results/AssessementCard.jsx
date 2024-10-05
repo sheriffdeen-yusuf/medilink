@@ -23,7 +23,7 @@ const AssessementCard = ({ assessment, setDetails, setShowDetail }) => {
 
   return (
     <>
-      <div className={`bg-white shadow-lg rounded-lg overflow-hidden my-4 `}>
+      <div className={`bg-white shadow-lg rounded-lg overflow-hidden my-4 w-full `}>
         <div
           style={{
             backgroundColor: divStyles.backgroundColor,
