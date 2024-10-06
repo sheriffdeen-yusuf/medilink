@@ -166,7 +166,7 @@ const Page = () => {
             />
             <RadioFormField
               name="freq_excercise"
-              label="10. How often do you engage in physical activity (at least 30 minutes a day)? (Regular exercise helps reduce the risk of breast cancer.)"
+              label="10. Do you engage in physical activity (at least 30 minutes a day)? (Regular exercise helps reduce the risk of breast cancer.)"
               control={form.control}
               options={[
                 { value: 'yes', label: 'Yes' },

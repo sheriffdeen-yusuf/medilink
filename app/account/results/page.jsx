@@ -35,7 +35,7 @@ const Page = () => {
   return (
     <div>
       <h1 className="text-2xl text-stone-700 font-semibold mb-12">
-        All Assesment Taken page
+        All Assesment Taken
       </h1>
       {isLoading ? (
         <PulseLoader

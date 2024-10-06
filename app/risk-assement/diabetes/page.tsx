@@ -158,7 +158,7 @@ const Page = () => {
 
             <RadioFormField
               name="consume_sugary"
-              label="9. How often do you consume sugary beverages or foods such as sodas, juices, sweets, and processed snacks? (Frequent consumption of high-sugar foods increases the risk of diabetes.)"
+              label="9. Do you often consume sugary beverages or foods such as sodas, juices, sweets, and processed snacks? (Frequent consumption of high-sugar foods increases the risk of diabetes.)"
               control={form.control}
               options={[
                 { value: 'yes', label: 'Yes' },
