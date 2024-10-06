@@ -80,8 +80,8 @@ const Page = () => {
             Back
           </Button>
         </Link>
-        <div className="min-h-[28rem] w-full grid grid-cols-2 shadow-2xl ">
-          <div className="relative h-full w-full">
+        <div className="min-h-[28rem] w-full grid grid-cols-1 md:grid-cols-2 shadow-2xl ">
+          <div className="hidden md:block relative h-full w-full">
             <Image
               src={Pic1}
               placeholder="blur"
@@ -91,7 +91,7 @@ const Page = () => {
             />
           </div>
           <div className="bg-slate-100 dark:bg-stone-900">
-            <div className=" px-10 py-4 ">
+            <div className=" md:px-10 md:py-4 p-4 ">
               <h1 className="text-2xl font-semibold capitalize text-center">
                 Login
               </h1>
