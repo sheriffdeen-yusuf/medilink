@@ -11,6 +11,8 @@ import Link from 'next/link';
 import { secureAxiosInstance } from '@/services/axios';
 import Toast from '@/lib/Toast';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 import { PulseLoader } from 'react-spinners';
 
 const formSchema = z.object({
@@ -28,6 +30,7 @@ const formSchema = z.object({
 
 const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -48,6 +51,7 @@ const Page = () => {
         });
         console.log(response);
         form.reset();
+        router.push('/account/results');
       })
       .catch((error) => {
         Toast.fire({

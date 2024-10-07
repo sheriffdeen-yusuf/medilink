@@ -12,6 +12,7 @@ import { PulseLoader } from 'react-spinners';
 import { secureAxiosInstance } from '@/services/axios';
 import Toast from '@/lib/Toast';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   age: z.enum(['yes', 'no']),
@@ -28,6 +29,7 @@ const formSchema = z.object({
 
 const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -48,6 +50,7 @@ const Page = () => {
         });
         console.log(response);
         form.reset();
+        router.push('/account/results');
       })
       .catch((error) => {
         Toast.fire({
@@ -138,7 +141,7 @@ const Page = () => {
             />
             <RadioFormField
               name="freq_excercise"
-              label="7. How many times per week do you engage in physical exercise, including walking, jogging, or other forms of physical activity? (Regular exercise reduces the risk of cardiovascular disease.)"
+              label="7. Do you often engage in physical exercise, including walking, jogging, or other forms of physical activity? (Regular exercise reduces the risk of cardiovascular disease.)"
               control={form.control}
               options={[
                 { value: 'yes', label: 'Yes' },

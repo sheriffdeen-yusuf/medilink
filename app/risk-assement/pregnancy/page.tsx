@@ -12,6 +12,7 @@ import { PulseLoader } from 'react-spinners';
 import { secureAxiosInstance } from '@/services/axios';
 import { useState } from 'react';
 import Toast from '@/lib/Toast';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   age: z.enum(['yes', 'no']),
@@ -28,6 +29,7 @@ const formSchema = z.object({
 
 const Page = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,6 +51,7 @@ const Page = () => {
         });
         console.log(response);
         form.reset();
+        router.push('/account/results');
       })
       .catch((error) => {
         Toast.fire({

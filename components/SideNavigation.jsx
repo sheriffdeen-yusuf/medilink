@@ -1,5 +1,5 @@
 'use client';
-import { CalendarDaysIcon, HomeIcon, UserIcon } from '@heroicons/react/24/solid';
+import { CalendarDaysIcon, HomeIcon, BookOpenIcon } from '@heroicons/react/24/solid';
 import SignOutButton from './SignOutButton';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -16,9 +16,9 @@ const navLinks = [
     icon: <CalendarDaysIcon className="h-5 w-5 text-primary-600" />,
   },
   {
-    name: 'Profile Setting',
+    name: 'Take Assessment',
     href: '/account/profile',
-    icon: <UserIcon className="h-5 w-5 text-primary-600" />,
+    icon: <BookOpenIcon className="h-5 w-5 text-primary-600" />,
   },
 ];
 
